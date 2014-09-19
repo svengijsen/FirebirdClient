@@ -17,11 +17,10 @@
 //
 
 
-#ifndef FirebirdClientDEFINES_H
-#define FirebirdClientDEFINES_H
-#include "./../../BrainStim/maindefines.h"
+#ifndef FIREBIRDCLIENTDEFINES_H
+#define FIREBIRDCLIENTDEFINES_H
+#include "maindefines.h"
 
-//Only edit the below!
 #define PLUGIN_FILE_VERSION_STRING_MAJOR	1   //Please do not edit this line manually, see BinaryVersioning.qs (145314599).
 #define PLUGIN_FILE_VERSION_STRING_MINOR	1   //Please do not edit this line manually, see BinaryVersioning.qs (145314599).
 #define PLUGIN_FILE_VERSION_STRING_REVISION	0   //Please do not edit this line manually, see BinaryVersioning.qs (145314599).
@@ -30,6 +29,8 @@
 #define PLUGIN_PRODUCT_VERSION_STRING_MINOR	0   //Please do not edit this line manually, see BinaryVersioning.qs (145314599).
 #define PLUGIN_PRODUCT_VERSION_STRING_REVISION	0   //Please do not edit this line manually, see BinaryVersioning.qs (145314599).
 #define PLUGIN_PRODUCT_VERSION_STRING_BUILD	1   //Please do not edit this line manually, see BinaryVersioning.qs (145314599).
+
+//Only edit the below!
 #define PLUGIN_LEGAL_COPYRIGHT						"Copyright (C) 2014"
 #define PLUGIN_AUTHOR_NAME							"Sven Gijsen"
 #define PLUGIN_AUTHOR_EMAIL							"sven.gijsen@maastrichtuniversity.nl"
@@ -49,7 +50,7 @@
 
 #define PLUGIN_FILE_VERSION_STRING				VERSION_STRING_INTERMEDIATE(PLUGIN_FILE_VERSION_STRING_MAJOR,PLUGIN_FILE_VERSION_STRING_MINOR,PLUGIN_FILE_VERSION_STRING_REVISION,PLUGIN_FILE_VERSION_STRING_BUILD)
 #define PLUGIN_PRODUCT_VERSION_STRING			VERSION_STRING_INTERMEDIATE(PLUGIN_PRODUCT_VERSION_STRING_MAJOR,PLUGIN_PRODUCT_VERSION_STRING_MINOR,PLUGIN_PRODUCT_VERSION_STRING_REVISION,PLUGIN_PRODUCT_VERSION_STRING_BUILD)
-#endif // FirebirdClientDEFINES_H
+#endif // FIREBIRDCLIENTDEFINES_H
 
 
 

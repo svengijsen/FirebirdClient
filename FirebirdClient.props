@@ -9,7 +9,8 @@
     <QTDIR Condition="'$(Platform)' == 'Win32'">C:\Qt\5.1.0\win32</QTDIR>
     <QTDIR Condition="'$(Platform)' == 'x64'">C:\Qt\5.1.0\x64</QTDIR>
     <FIREBIRD_HOME Condition="'$(Platform)' == 'Win32'">C:\Qt\Firebird-2.5.2.26540-0\win32</FIREBIRD_HOME>
-    <FIREBIRD_HOME Condition="'$(Platform)' == 'x64'">C:\Qt\Firebird-2.5.2.26540-0\x64</FIREBIRD_HOME>     
+    <FIREBIRD_HOME Condition="'$(Platform)' == 'x64'">C:\Qt\Firebird-2.5.2.26540-0\x64</FIREBIRD_HOME>
+    <BRAINSTIM_HOME>E:\Projects\BrainStim</BRAINSTIM_HOME> 
   </PropertyGroup>
   <Choose>
     <When Condition="$([System.Convert]::ToBoolean($(IsDebug)))">
@@ -35,6 +36,9 @@
     </BuildMacro>
     <BuildMacro Include="FIREBIRD_HOME">
       <Value>$(FIREBIRD_HOME)</Value>
-    </BuildMacro>       
+    </BuildMacro>
+    <BuildMacro Include="BRAINSTIM_HOME">
+      <Value>$(BRAINSTIM_HOME)</Value>
+    </BuildMacro>      
   </ItemGroup>
 </Project>

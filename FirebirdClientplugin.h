@@ -25,13 +25,10 @@
 #include <QString>
 #include <Qlibrary>
 
-#include "../../BrainStim/plugininterface.h"
 #include "FirebirdClient_dialog.h"
 #include "FirebirdClient.h"
 #include "defines.h"
-
-QT_BEGIN_NAMESPACE
-QT_END_NAMESPACE
+#include <plugininterface.h>
 
 class FirebirdClientPlugin : public QObject, ExtensionInterface
 {

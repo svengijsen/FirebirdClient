@@ -32,7 +32,7 @@
 #include <QSqlTableModel>
 #include <QtSql/qsql.h>
 #include <QDebug>
-#include "./../../BrainStim/mainappinfo.h"
+#include "mainappinfo.h"
 
 namespace Model
 {
