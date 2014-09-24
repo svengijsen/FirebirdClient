@@ -17,40 +17,39 @@
 //
 
 
-#include "FirebirdClient_dialog.h"
+#ifndef _DATABASE_MODEL_H_
+#define _DATABASE_MODEL_H_
 
-FirebirdClient_Dialog::FirebirdClient_Dialog(QWidget *parent)	: QDialog(parent)
-{
-	//Gets constructed only once during the load of the plugin
-	ui.setupUi(this);
-	connect(ui.btnExampleButton, SIGNAL(clicked()), this, SLOT(exampleButton_Pressed()));
+#include "firebirddatabase.h"
+
+namespace Model
+{ 
+    class DatabaseModel : public QObject
+    {
+        Q_OBJECT
+
+    public:
+        DatabaseModel();
+        ~DatabaseModel();
+
+    public:
+        void Open();
+        bool Create();
+        void AddJob(const QString& jobName );
+        void SelectJobs(QStringList& jobs );
+
+    private:
+        void Close();
+        QString GetFullPath(const QString& path);
+
+    private:
+        FireBirdDatabase fireBirdDatabase_;
+        static QString userName_;
+        static QString password_;
+        static QString resourceString_;
+
+        Q_DISABLE_COPY(DatabaseModel);
+    };
 }
 
-FirebirdClient_Dialog::~FirebirdClient_Dialog()
-{
-
-}
-
-void FirebirdClient_Dialog::on_okButton_clicked()
-{
-	cleanUp();
-	accept();
-}
-
-void FirebirdClient_Dialog::on_cancelButton_clicked()
-{
-	cleanUp();
-	reject();
-}
-
-void FirebirdClient_Dialog::cleanUp()
-{
-	return;
-}
-
-void FirebirdClient_Dialog::exampleButton_Pressed()
-{
-	QMessageBox msgBox;
-	msgBox.setText("Example button pressed.");
-	msgBox.exec();
-}
+#endif // _DATABASE_MODEL_H_

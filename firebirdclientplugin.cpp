@@ -17,8 +17,8 @@
 //
 
 
-#include "FirebirdClientplugin.h"
-#include "FirebirdClient.h"
+#include "firebirdclientplugin.h"
+#include "firebirdclient.h"
 #include "defines.h"
 
 Q_DECLARE_METATYPE(FirebirdClient*)

@@ -25,7 +25,7 @@
 #include <QString>
 #include <QtScript>
 #include <QScriptable>
-//#include "FireBirdDatabase.h"
+//#include "firebirddatabase.h"
 #include "DatabaseModel.h"
 
 //!  The FirebirdClient class. 

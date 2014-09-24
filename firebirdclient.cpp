@@ -17,7 +17,7 @@
 //
 
 
-#include "FirebirdClient.h"
+#include "firebirdclient.h"
 #include <QSQLRecord>
 #include <QTableView>
 #include <QAxObject>

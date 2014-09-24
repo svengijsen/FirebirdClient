@@ -55,22 +55,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FirebirdClient.cpp">
+    <ClCompile Include="firebirdclient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FirebirdClient_dialog.cpp">
+    <ClCompile Include="firebirdclient_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FirebirdClientplugin.cpp">
+    <ClCompile Include="firebirdclientplugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DatabaseModel.cpp">
+    <ClCompile Include="databasemodel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FireBirdDatabase.cpp">
+    <ClCompile Include="firebirddatabase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Build_MSVC\Qt\Win32\Debug\Moc\moc_FireBirdDatabase.cpp">
@@ -165,7 +165,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StdAfx.h">
+    <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -177,7 +177,7 @@
     <ClInclude Include="..\..\BrainStim\plugininterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CustomScriptObjects.h">
+    <ClInclude Include="customscriptobjects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Build_MSVC\Qt\$(PlatformName)\$(ConfigurationName)\GeneratedFiles\ui_FirebirdClient_dialog.h">
@@ -185,30 +185,30 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="FirebirdClient.h">
+    <CustomBuild Include="firebirdclient.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="FirebirdClient_dialog.h">
+    <CustomBuild Include="firebirdclient_dialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="FirebirdClientplugin.h">
+    <CustomBuild Include="firebirdclientplugin.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="FirebirdClient_dialog.ui">
+    <CustomBuild Include="firebirdclient_dialog.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="DatabaseModel.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="FireBirdDatabase.h">
+    <CustomBuild Include="firebirddatabase.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="FirebirdClientplugin.rc" />
+    <ResourceCompile Include="firebirdclientplugin.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="licenseHeader.licenseheader" />
-    <None Include="FirebirdClient.json" />
+    <None Include="licenseheader.licenseheader" />
+    <None Include="firebirdclient.json" />
   </ItemGroup>
 </Project>

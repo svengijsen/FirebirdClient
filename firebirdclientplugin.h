@@ -25,8 +25,8 @@
 #include <QString>
 #include <Qlibrary>
 
-#include "FirebirdClient_dialog.h"
-#include "FirebirdClient.h"
+#include "firebirdclient_dialog.h"
+#include "firebirdclient.h"
 #include "defines.h"
 #include <plugininterface.h>
 

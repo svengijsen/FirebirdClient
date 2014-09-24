@@ -18,7 +18,7 @@
 
 
 #include "stdafx.h"
-#include "FireBirdDatabase.h"
+#include "firebirddatabase.h"
 #include "ibase.h"
 #include "iberror.h"
 
@@ -164,15 +164,19 @@ bool FireBirdDatabase::Close()
 {    
     try
     {
-        lastError_ = 0;
+		if(connectionName_.isEmpty()==false)
 		{
-			QSqlDatabase database = QSqlDatabase::database(connectionName_);
-			if (database.isValid() && database.isOpen())
+			lastError_ = 0;
 			{
-				database.close();
-			} 
+
+				QSqlDatabase database = QSqlDatabase::database(connectionName_);
+				if (database.isValid() && database.isOpen())
+				{
+					database.close();
+				} 
+			}
+			QSqlDatabase::removeDatabase(connectionName_);
 		}
-        QSqlDatabase::removeDatabase(connectionName_);
         driver_ = NULL;
     }
     catch (...)
@@ -185,11 +189,14 @@ bool FireBirdDatabase::Close()
 
 bool FireBirdDatabase::IsOpen()
 {
-	QSqlDatabase database = QSqlDatabase::database(connectionName_);
-    if (database.isValid() && database.isOpen())
-    {
-        return true;
-    }
+	if(connectionName_.isEmpty() == false)
+	{
+		QSqlDatabase database = QSqlDatabase::database(connectionName_);
+		if (database.isValid() && database.isOpen())
+		{
+			return true;
+		}
+	}
     return false;
 }
 
