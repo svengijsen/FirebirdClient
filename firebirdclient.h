@@ -25,7 +25,7 @@
 #include <QString>
 #include <QtScript>
 #include <QScriptable>
-//#include "firebirddatabase.h"
+#include <QTableView>
 #include "DatabaseModel.h"
 
 //!  The FirebirdClient class. 
@@ -52,7 +52,7 @@ public slots:
 	 * @param filePath the directory path to the new database file (<Path>/<DBName>.FDB).
 	 * @param userName the username of the database creator that gets the administrator rights.
 	 * @param password the password for the above administrator user.
-	 * @return a boolean value determing whether the database could be created.
+	 * @return a boolean value determining whether the database could be created.
 	 */
 	bool CreateDatabase(const QString& filePath, const QString& userName, const QString& password);     
 	//! \brief OpenDatabase slot.
@@ -60,38 +60,39 @@ public slots:
 	 * @param filePath the directory path to the database file (<Path>/<DBName>.FDB) to open.
 	 * @param userName a username of the database with sufficient rights to open the Firebird database.
 	 * @param password the password for the above user.
-	 * @return a boolean value determing whether the database could be opened.
+	 * @return a boolean value determining whether the database could be opened.
 	 */
 	bool OpenDatabase(const QString& filePath, const QString& userName, const QString& password);
 	//! \brief InitializeDatabase slot.
 	/*!  This function initializes the last opened or created Firebird database.
 	 *   This step is not necessary because the FirebirdClient::CreateDatabase and FirebirdClient::OpenDatabase automatically call this function when succesfully executed.
-	 * @return a boolean value determing whether the database could be initialized.
+	 * @return a boolean value determining whether the database could be initialized.
 	 */
 	bool InitializeDatabase();
 	//! \brief ExecuteDatabaseQuery slot.
 	/*!  This function executes a custom SQL Query.
 	 * @param sQuery the SQL Query to execute.
-	 * @return a boolean value determing whether the SQL Query could be executed.
+	 * @return a boolean value determining whether the SQL Query could be executed.
 	 */
 	bool ExecuteDatabaseQuery(const QString& sQuery);
-	//! \brief ShowDatabaseQuery slot.
-	/*! This function executes a custom SQL Select Query and shows the resulting table in a popup window with a grid layout.
-	 * @param sQuery the SQL Select Query to execute.
-	 * @return a boolean value determing whether the SQL Query could be executed.
-	 */
-	bool ShowDatabaseQuery(const QString& sQuery);
+	//! \brief ExecuteReturnDatabaseQuery slot.
+	/*!  This function executes a custom SQL Query and returns the result from a specified column as an array.
+	* @param sQuery the SQL Query to execute.
+	* @param sColumnName a string containing the name of the columns that the result returns.
+	* @return an array containing all the results from the executed SQL Query of the specified column.
+	*/
+	QStringList ExecuteReturnDatabaseQuery(const QString &sQuery, const QString sColumnName);
 	//! \brief ExportDatabasetoExcel slot.
 	/*!  This function exports the result (table) of an SQL Select Query to an Sheet of an Excel document.
 	 * @param sPath the directory path to the (new or existing) Excel file (<Path>/<ExcelName>.XLS)..
 	 * @param sQuery the SQL Select Query to execute.
 	 * @param sSheetName the name of the Excel documents sheet to export the result to.
-	 * @return a boolean value determing whether the SQL Select Query could be exported to an Sheet of an Excel document.
+	 * @return a boolean value determining whether the SQL Select Query could be exported to an Sheet of an Excel document.
 	 */
 	bool ExportDatabasetoExcel(const QString& sPath, const QString& sQuery, const QString& sSheetName = "");
 	//! \brief CloseDatabase slot.
 	/*!  This function closes the Firebird database.	
-	 * @return a boolean value determing whether the database could be closed.
+	 * @return a boolean value determining whether the database could be closed.
 	 */
 	bool CloseDatabase();
 
@@ -101,9 +102,7 @@ private:
 	bool KillPids(const QStringList &lPidList);
 
 	QScriptEngine* currentScriptEngine;
-	Model::DatabaseModel dbModel;
 	Model::FireBirdDatabase *fbDatabase;
-
 };
 
 #endif // FirebirdClient_H

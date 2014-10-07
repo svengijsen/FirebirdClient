@@ -59,6 +59,7 @@ namespace Model
         QString databasePath_;
         QString connectionName_;
         QSqlDriver* driver_;
+		QSqlDatabase *sqlDatabase;
         bool isInitialized_;    
         int instances_;
         int lastError_;

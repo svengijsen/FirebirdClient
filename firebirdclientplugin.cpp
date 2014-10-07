@@ -33,8 +33,17 @@ FirebirdClientPlugin::FirebirdClientPlugin(QObject *parent)
 
 FirebirdClientPlugin::~FirebirdClientPlugin()
 {
-	delete FirebirdClientDiagObject;
-	delete FirebirdClientObject;
+	if (FirebirdClientDiagObject)
+	{
+		delete FirebirdClientDiagObject;
+		FirebirdClientDiagObject = NULL;
+	}
+	if (FirebirdClientObject)
+	{
+		delete FirebirdClientObject;
+		FirebirdClientObject = NULL;
+	}
+	
 }
 
 int FirebirdClientPlugin::ConfigureScriptEngine(QScriptEngine &engine)

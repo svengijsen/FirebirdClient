@@ -33,7 +33,7 @@ QString FireBirdDatabase::qtIBasePluginName_ = "qsqlibased.dll";
 QString FireBirdDatabase::qtIBasePluginName_ = "qsqlibase.dll";
 #endif
 
-FireBirdDatabase::FireBirdDatabase():isInitialized_(false), databasePath_(""), connectionName_(""), instances_(0), lastError_(0)
+FireBirdDatabase::FireBirdDatabase() :isInitialized_(false), databasePath_(""), connectionName_(""), instances_(0), lastError_(0), sqlDatabase(NULL)
 {   
 }
 
@@ -55,7 +55,7 @@ bool FireBirdDatabase::Initialize()
 		pluginLoader_.setFileName(tmpString);        
         if (!pluginLoader_.load())
         {            
-            qDebug() << __FUNCTION__ << "Loading SQL Driver failed, searched in folder: " << tmpString;
+			qDebug() << __FUNCTION__ << "Loading SQL Driver failed, searched in folder: " << tmpString << pluginLoader_.errorString();
             isInitialized_ = false;
             return false;
         }
@@ -124,13 +124,15 @@ bool FireBirdDatabase::Create(const QString& filePath, const QString& userName, 
 
 bool FireBirdDatabase::Open(const QString& filePath, const QString& userName, const QString& password)
 {
-    isInitialized_ = false;
     lastError_ = 0;
-    if (!Initialize())
-    {
-        qDebug() << __FUNCTION__ << "Firebird database is not initialized.";
-        return false;
-    }
+	if (isInitialized_ == false)
+	{
+		if (!Initialize())
+		{
+			qDebug() << __FUNCTION__ << "Firebird database is not initialized.";
+			return false;
+		}
+	}
     instances_++;
     connectionName_ = "Connection_1";            
     QSqlDatabase database; 
@@ -167,17 +169,22 @@ bool FireBirdDatabase::Close()
 		if(connectionName_.isEmpty()==false)
 		{
 			lastError_ = 0;
+			if (sqlDatabase)
 			{
-
-				QSqlDatabase database = QSqlDatabase::database(connectionName_);
-				if (database.isValid() && database.isOpen())
+			//	QSqlDatabase database = QSqlDatabase::database(connectionName_);
+				if (sqlDatabase->isValid() && sqlDatabase->isOpen())
 				{
-					database.close();
+					sqlDatabase->close();
+					sqlDatabase = NULL;
 				} 
 			}
 			QSqlDatabase::removeDatabase(connectionName_);
+			connectionName_.clear();
 		}
-        driver_ = NULL;
+		driver_ = NULL;
+		if (pluginLoader_.isLoaded())
+			pluginLoader_.unload();
+		isInitialized_ = false;
     }
     catch (...)
     {
@@ -191,6 +198,7 @@ bool FireBirdDatabase::IsOpen()
 {
 	if(connectionName_.isEmpty() == false)
 	{
+		sqlDatabase = &QSqlDatabase::database(connectionName_);
 		QSqlDatabase database = QSqlDatabase::database(connectionName_);
 		if (database.isValid() && database.isOpen())
 		{
@@ -202,7 +210,11 @@ bool FireBirdDatabase::IsOpen()
 
 QSqlQuery Model::FireBirdDatabase::CreateQuery()
 {
-    return QSqlQuery(QSqlDatabase::database(connectionName_));
+	if (sqlDatabase)
+	{
+		return QSqlQuery(*sqlDatabase);
+	}
+    //return QSqlQuery(QSqlDatabase::database(connectionName_));
 }
 
 int Model::FireBirdDatabase::LastError()

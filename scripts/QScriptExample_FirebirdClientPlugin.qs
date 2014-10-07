@@ -1,9 +1,10 @@
 //Construct a new Plugin object
 var FirebirdClientobject = new FirebirdClient();
-var scriptRootPath = BrainStim.getSelectedScriptFileLocation();
-var databaseName = "Test.FDB";
+var scriptRootPath = BrainStim.getActiveDocumentFileLocation();
+var sTimeStamp = getTimeStamp() ;
+var databaseName = sTimeStamp + ".FDB";
 var databasePath = scriptRootPath + "/" + databaseName;
-var excelFileName = "Test.xls";
+var excelFileName = sTimeStamp + ".xls";
 var excelExportPath = scriptRootPath + "/" + excelFileName;
 var userName = "user";
 var userPassword = "123";
@@ -16,9 +17,17 @@ var QueryCreateTable =
 	"constraint pk_people primary key (id)," + 
 	"constraint uk_nickname unique (nickname) using index ix_nick" + 
 	")";
-var QueryInsertRecord =	
+var QueryInsertRecord1 =	
 "insert into people (id, nickname, country) " +
-"values ('1', 'Nick_Name', 'NLE') " +
+"values ('1', 'Nick_Name_one', 'NLE') " +
+"returning nickname";
+var QueryInsertRecord2 =	
+"insert into people (id, nickname, country) " +
+"values ('0', 'Nick_Name_two', 'FR') " +
+"returning nickname";
+var QueryInsertRecord3 =	
+"insert into people (id, nickname, country) " +
+"values ('2', 'Nick_Name_three', 'RS') " +
 "returning nickname";
 var QuerySelectRecords = 
 "select * from people"
@@ -33,26 +42,23 @@ var QueryCreateProcedure =
 " RESULT = A + B;" +
 " end";
 var QueryCallProcedure = "EXECUTE PROCEDURE ADD_INTS(53, 4)";
-//""
-//"EXECUTE PROCEDURE ADD_INTS" +
-//" 3, 4" +
-//" RETURNING_VALUES RESULT;";
 
-
-////Using JSON Arrays
-//var employees = [
-//{ "firstName":"John" , "lastName":"Doe" }, 
-//{ "firstName":"Anna" , "lastName":"Smith" }, 
-//{ "firstName":"Peter" , "lastName": "Jones" }
-//];
-//Log(employees[1].lastName);
-//employees[0].firstName = "Jonatan";
-//Log(employees[0].firstName);
+function getTimeStamp() 
+{
+	var now = new Date();
+	return (String(now.getFullYear()) +
+		String(now.getMonth() + 1) +
+		String(now.getDate()) +
+		String(now.getHours()) +
+		((now.getMinutes() < 10)? String("0" + now.getMinutes()): String(now.getMinutes())) +
+		((now.getSeconds() < 10)? String("0" + now.getSeconds()) : String(now.getSeconds())));
+}
 
 Log("\n");
-//Test whether we can invoke some default implemented Slots
 
 var fDatabase = new QFile(databasePath);
+if(fDatabase.exists())
+	fDatabase.remove();
 if(fDatabase.exists() == false)
 {
 	bResult = FirebirdClientobject.CreateDatabase(databasePath,userName,userPassword);
@@ -60,7 +66,8 @@ if(fDatabase.exists() == false)
 }
 else
 {
-	bResult = true;
+	Log("Database already present and cannot delete.. exiting");
+	bResult = false;
 }
 if(bResult)
 {
@@ -70,22 +77,23 @@ if(bResult)
 	{
 		//bResult = bResult && FirebirdClientobject.InitializeDatabase()
 		//Log("InitializeDatabase() returned: " + bResult);	
-		//bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryCreateTable)
-		//Log("ExecuteDatabaseQuery(QueryCreateTable) returned: " + bResult);
-		//bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryInsertRecord)
-		//Log("ExecuteDatabaseQuery(QueryInsertRecord) returned: " + bResult);	
-		//bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QuerySelectRecords)
-		//Log("ExecuteDatabaseQuery(QuerySelectRecords) returned: " + bResult);	
-		//bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryCreateProcedure)
-		//Log("ExecuteDatabaseQuery(QueryCreateProcedure) returned: " + bResult);		
-		//bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryCallProcedure)
-		//Log("ExecuteDatabaseQuery(QueryCallProcedure) returned: " + bResult);
-		bResult = bResult && FirebirdClientobject.ShowDatabaseQuery(QuerySelectRecords)
-		Log("ShowDatabaseQuery(QuerySelectRecords) returned: " + bResult);
-		//bResult = bResult && FirebirdClientobject.ExportDatabasetoExcel(excelExportPath,QuerySelectRecords);//, "20130604141747883")
-		//Log("ExportDatabasetoExcel(QuerySelectRecords) returned: " + bResult);
-		
-		
+		bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryCreateTable)
+		Log("ExecuteDatabaseQuery(QueryCreateTable) returned: " + bResult);
+		bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryInsertRecord1)
+		Log("ExecuteDatabaseQuery(QueryInsertRecord1) returned: " + bResult);	
+		bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryInsertRecord2)
+		Log("ExecuteDatabaseQuery(QueryInsertRecord2) returned: " + bResult);	
+		bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryInsertRecord3)
+		Log("ExecuteDatabaseQuery(QueryInsertRecord3) returned: " + bResult);	
+		bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QuerySelectRecords)
+		Log("ExecuteDatabaseQuery(QuerySelectRecords) returned: " + bResult);	
+		bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryCreateProcedure)
+		Log("ExecuteDatabaseQuery(QueryCreateProcedure) returned: " + bResult);		
+		bResult = bResult && FirebirdClientobject.ExecuteDatabaseQuery(QueryCallProcedure)
+		Log("ExecuteDatabaseQuery(QueryCallProcedure) returned: " + bResult);
+		Log("ExecuteDatabaseQuery(QuerySelectRecords) returned: " + FirebirdClientobject.ExecuteReturnDatabaseQuery(QuerySelectRecords, "nickname"));
+		bResult = bResult && FirebirdClientobject.ExportDatabasetoExcel(excelExportPath,QuerySelectRecords);
+		Log("ExportDatabasetoExcel(QuerySelectRecords) returned: " + bResult);
 		bResult = bResult && FirebirdClientobject.CloseDatabase()
 		Log("CloseDatabase() returned: " + bResult);	
 	}	
@@ -93,5 +101,6 @@ if(bResult)
 
 
 Log("\n");
-//Set the constructed object to null
+//Set the constructed objects and function to null
+getTimeStamp = null;
 FirebirdClientobject = null;

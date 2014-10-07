@@ -19,9 +19,9 @@
 
 #include "firebirdclient.h"
 #include <QSQLRecord>
-#include <QTableView>
 #include <QAxObject>
 #include <QFileDialog>
+#include "windows.h"
 #include "Psapi.h"
 
 QScriptValue FirebirdClient::ctor__extensionname(QScriptContext* context, QScriptEngine* engine)
@@ -433,23 +433,25 @@ QStringList FirebirdClient::getListOfPids(const QString &SProcessName, const QSt
 	////qDebug() << list;
 }
 
-bool FirebirdClient::ShowDatabaseQuery(const QString& sQuery)
+/*
+bool FirebirdClient::ShowDatabaseQuery(const QString& sQuery, QSqlQueryModel &model, QTableView &view)
 {
 	QSqlQuery query;
 	if(RetrieveSQLQuery(sQuery,query))
 	{
-		QSqlQueryModel *model = new QSqlQueryModel;
-		model->setQuery(query);//"SELECT name, salary FROM employee");
+		//QSqlQueryModel model;// = new QSqlQueryModel;
+		model.setQuery(query);//"SELECT name, salary FROM employee");
 		//model->setHeaderData(0, Qt::Horizontal, tr("Name"));
 		//model->setHeaderData(1, Qt::Horizontal, tr("Salary"));
 		//int nId = model->record(2).value("id").toInt();
-		QTableView *view = new QTableView;
-		view->setModel(model);
-		view->show();
+		//QTableView view;// = new QTableView;
+		view.setModel(&model);
+		view.show();
 		return true;
 	}
 	return false;
 }
+*/
 
 bool FirebirdClient::ExecuteDatabaseQuery(const QString& sQuery)
 {
@@ -473,6 +475,24 @@ bool FirebirdClient::ExecuteDatabaseQuery(const QString& sQuery)
 		return true;
 	}
 	return false;
+}
+
+QStringList FirebirdClient::ExecuteReturnDatabaseQuery(const QString &sQuery, const QString sColumnName)
+{
+	QSqlQuery query;
+	QStringList sList;
+	if (RetrieveSQLQuery(sQuery, query))
+	{
+		int nFieldNo = query.record().indexOf(sColumnName);
+		if (nFieldNo >= 0)
+		{
+			while (query.next())
+			{
+				sList.append(query.value(nFieldNo).toString());
+			}
+		}
+	}
+	return sList;
 }
 
 bool FirebirdClient::RetrieveSQLQuery(const QString &sQuery, QSqlQuery &query)
