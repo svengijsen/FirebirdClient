@@ -1,5 +1,5 @@
 //FirebirdClient 
-//Copyright (C) 2014  Sven Gijsen
+//Copyright (C) 2015  Sven Gijsen
 //
 //This file is part of BrainStim.
 //BrainStim is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@
 #define PLUGIN_PRODUCT_VERSION_STRING_BUILD	1   
 
 //Only edit the below!
-#define PLUGIN_LEGAL_COPYRIGHT						"Copyright (C) 2014"
+#define PLUGIN_LEGAL_COPYRIGHT						"Copyright (C) 2015"
 #define PLUGIN_AUTHOR_NAME							"Sven Gijsen"
 #define PLUGIN_AUTHOR_EMAIL							"sven.gijsen@maastrichtuniversity.nl"
 #define PLUGIN_COMPANY_NAME							"MBIC, Maastricht Brain Imaging Center"

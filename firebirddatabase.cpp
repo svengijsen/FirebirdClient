@@ -1,5 +1,5 @@
 //FirebirdClient
-//Copyright (C) 2014  Sven Gijsen
+//Copyright (C) 2015  Sven Gijsen
 //
 //This file is part of BrainStim.
 //BrainStim is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ bool FireBirdDatabase::Initialize()
     }
     if(!pluginLoader_.isLoaded())
     {
-		QString tmpString = MainAppInfo::appDirPath() + QDir::separator() + qtIBasePluginName_;//+ "sqldrivers" + QDir::separator() + qtIBasePluginName_;
+		QString tmpString = QDir::toNativeSeparators(MainAppInfo::pluginsDirPath() + QDir::separator() + "sqldrivers" + QDir::separator() + qtIBasePluginName_);
 		pluginLoader_.setFileName(tmpString);        
         if (!pluginLoader_.load())
         {            
@@ -134,30 +134,33 @@ bool FireBirdDatabase::Open(const QString& filePath, const QString& userName, co
 		}
 	}
     instances_++;
-    connectionName_ = "Connection_1";            
-    QSqlDatabase database; 
+    connectionName_ = "Connection_1";   
+
+	sqlDatabase = new QSqlDatabase(QSqlDatabase::addDatabase(driver_, connectionName_));
+
+    //QSqlDatabase database; 
     // "Adding database (DRIVER) ";
-    database = QSqlDatabase::addDatabase(driver_, connectionName_);
+    //database = QSqlDatabase::addDatabase(driver_, connectionName_);
     // "Check Valid database. ";
-    if (!database.isValid())
+	if (!sqlDatabase->isValid())
     {
-        QString lastError = database.lastError().text();
+		QString lastError = sqlDatabase->lastError().text();
         qDebug() << __FUNCTION__ << "Database is not valid. LastError = " << lastError;
         return false;
     }
     // "Set database configurations.";
-    database.setDatabaseName(filePath);
-    database.setUserName(userName);
-    database.setPassword(password);
+	sqlDatabase->setDatabaseName(filePath);
+	sqlDatabase->setUserName(userName);
+	sqlDatabase->setPassword(password);
     QString connectionString = QString(connectionString_).arg(filePath);
-    database.setConnectOptions(connectionString);
+	sqlDatabase->setConnectOptions(connectionString);
 	bool result = false;    
-    result = database.open();
+	result = sqlDatabase->open();
     if(!result)
     {
-        QString lastError = database.lastError().text();   
+		QString lastError = sqlDatabase->lastError().text();
 		qDebug() << __FUNCTION__ << "Could not open database(" << lastError << ")";
-        lastError_ = (uint)database.lastError().number();        
+		lastError_ = (uint)sqlDatabase->lastError().number();
     }
     return result;
 }
@@ -168,6 +171,9 @@ bool FireBirdDatabase::Close()
     {
 		if(connectionName_.isEmpty()==false)
 		{
+			//QSqlDatabase::removeDatabase(connectionName_);
+			sqlDatabase->removeDatabase(connectionName_);
+
 			lastError_ = 0;
 			if (sqlDatabase)
 			{
@@ -175,10 +181,10 @@ bool FireBirdDatabase::Close()
 				if (sqlDatabase->isValid() && sqlDatabase->isOpen())
 				{
 					sqlDatabase->close();
+					delete sqlDatabase;
 					sqlDatabase = NULL;
 				} 
 			}
-			QSqlDatabase::removeDatabase(connectionName_);
 			connectionName_.clear();
 		}
 		driver_ = NULL;
@@ -198,7 +204,6 @@ bool FireBirdDatabase::IsOpen()
 {
 	if(connectionName_.isEmpty() == false)
 	{
-		sqlDatabase = &QSqlDatabase::database(connectionName_);
 		QSqlDatabase database = QSqlDatabase::database(connectionName_);
 		if (database.isValid() && database.isOpen())
 		{
@@ -210,10 +215,13 @@ bool FireBirdDatabase::IsOpen()
 
 QSqlQuery Model::FireBirdDatabase::CreateQuery()
 {
-	if (sqlDatabase)
-	{
-		return QSqlQuery(*sqlDatabase);
-	}
+	//if (sqlDatabase)
+	//{	
+		//QSqlQuery *tmpSQLQuery = new QSqlQuery(sqlDatabase->database());
+		
+		//return QSqlQuery(*sqlDatabase);//sqlDatabase->database());//*sqlDatabase);//
+		return QSqlQuery(QSqlDatabase::database(connectionName_));
+	//}
     //return QSqlQuery(QSqlDatabase::database(connectionName_));
 }
 

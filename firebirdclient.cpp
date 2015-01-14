@@ -1,5 +1,5 @@
 //FirebirdClient
-//Copyright (C) 2014  Sven Gijsen
+//Copyright (C) 2015  Sven Gijsen
 //
 //This file is part of BrainStim.
 //BrainStim is free software: you can redistribute it and/or modify
@@ -519,19 +519,14 @@ bool FirebirdClient::RetrieveSQLQuery(const QString &sQuery, QSqlQuery &query)
 		//}    
 		//query.next();
 		//int jobID = query.value(0).toUInt();
-
-		query = QSqlQuery(fbDatabase->CreateQuery());
+		query = fbDatabase->CreateQuery(); //QSqlQuery(fbDatabase->CreateQuery());
 		if(query.prepare(sQuery))
 		{
-			if (!query.exec())
-			{
-				QString sError = query.lastError().text();            
-				qDebug() << __FUNCTION__ << "Error executing Query (" << sError << ")";
-			}    
+			if (!query.exec())         
+				qDebug() << __FUNCTION__ << "Error executing Query (" << query.lastError().text() << ")";  
 			return true;
 		}
-		//delete query;
-		//query = NULL;
+		qWarning() << __FUNCTION__ << "Error preparing Query (" << query.lastError().text() << ")";
 	}
 	return false;
 }
