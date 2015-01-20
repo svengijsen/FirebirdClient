@@ -18,15 +18,24 @@
     <rect>
      <x>340</x>
      <y>460</y>
-     <width>221</width>
-     <height>33</height>
+     <width>238</width>
+     <height>36</height>
     </rect>
    </property>
    <layout class="QHBoxLayout">
     <property name="spacing">
      <number>6</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -74,19 +83,6 @@
     <attribute name="title">
      <string>Tab1</string>
     </attribute>
-    <widget class="QPushButton" name="btnExampleButton">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>50</y>
-       <width>131</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Example Button</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QWidget" name="tab2">
     <attribute name="title">

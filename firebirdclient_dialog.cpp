@@ -23,7 +23,7 @@ FirebirdClient_Dialog::FirebirdClient_Dialog(QWidget *parent)	: QDialog(parent)
 {
 	//Gets constructed only once during the load of the plugin
 	ui.setupUi(this);
-	connect(ui.btnExampleButton, SIGNAL(clicked()), this, SLOT(exampleButton_Pressed()));
+	//connect(ui.btnExampleButton, SIGNAL(clicked()), this, SLOT(exampleButton_Pressed()));
 }
 
 FirebirdClient_Dialog::~FirebirdClient_Dialog()
