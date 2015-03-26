@@ -28,7 +28,7 @@ FirebirdClientPlugin::FirebirdClientPlugin(QObject *parent)
 {
 	FirebirdClientObject = new FirebirdClient(parent);
 	FirebirdClientDiagObject = new FirebirdClient_Dialog();	
-	strPluginInformation = QString(PLUGIN_INTERNAL_NAME) + " Plugin" + "(v" + PLUGIN_FILE_VERSION_STRING + ")" + " by " + PLUGIN_AUTHOR_NAME;
+	strPluginInformation = QString(PLUGIN_INTERNAL_NAME) + " Plugin" + "(v" + PLUGIN_FILE_VERSION_STRING + ")";// +" by " + PLUGIN_AUTHOR_NAME;
 	strPluginInternalName = PLUGIN_INTERNAL_NAME;
 }
 
