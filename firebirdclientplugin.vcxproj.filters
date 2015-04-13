@@ -163,6 +163,9 @@
     <ClCompile Include="..\Build_MSVC\Qt\x64\Template\Moc\moc_DatabaseModel.cpp">
       <Filter>Generated Files\Template_x64</Filter>
     </ClCompile>
+    <ClCompile Include="..\Build_MSVC\Qt\$(PlatformName)\$(ConfigurationName)\GeneratedFiles\qrc_firebirdclient.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -203,6 +206,9 @@
     <CustomBuild Include="firebirddatabase.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="firebirdclient.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="firebirdclientplugin.rc" />
@@ -210,5 +216,17 @@
   <ItemGroup>
     <None Include="licenseheader.licenseheader" />
     <None Include="firebirdclient.json" />
+    <None Include="resources\firebirdclientplugin_Win32_Debug.ini">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources\firebirdclientplugin_Win32_Release.ini">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources\firebirdclientplugin_x64_Debug.ini">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources\firebirdclientplugin_x64_Release.ini">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

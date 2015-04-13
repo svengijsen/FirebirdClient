@@ -1,0 +1,8 @@
+<RCC>
+	<qresource prefix="dataFirebirdClient">
+		<file>resources/firebirdclientplugin_Win32_Debug.ini</file>
+		<file>resources/firebirdclientplugin_Win32_Release.ini</file>
+		<file>resources/firebirdclientplugin_x64_Debug.ini</file>
+		<file>resources/firebirdclientplugin_x64_Release.ini</file>
+	</qresource>
+</RCC>
