@@ -51,7 +51,33 @@ bool FireBirdDatabase::Initialize()
     }
     if(!pluginLoader_.isLoaded())
     {
-		QString tmpString = QDir::toNativeSeparators(MainAppInfo::pluginsDirPath() + QDir::separator() + "sqldrivers" + QDir::separator() + qtIBasePluginName_);
+		QStringList libPaths = qApp->libraryPaths();	
+		//see qApp->setLibraryPaths(libPaths);
+		QDir tmpDir;
+		QString tmpString = "";
+		foreach(QString sPath, libPaths)
+		{
+			tmpDir.setPath(sPath);
+			if (tmpDir.exists())
+			{
+				if (tmpDir.cd("sqldrivers"))
+				{
+					tmpString = QDir::toNativeSeparators(tmpDir.absolutePath() + QDir::separator() + qtIBasePluginName_);
+					if (QFile(tmpString).exists())
+						break;
+					tmpString = "";
+					tmpDir.cdUp();
+				}
+			}
+		}
+		if (tmpString.isEmpty())
+		{
+			qDebug() << __FUNCTION__ << "SQL Driver library " << qtIBasePluginName_ << " not found!";
+			isInitialized_ = false;
+			return false;
+		}
+		//MainAppInfo::pluginsDirPath() + QDir::separator() + "sqldrivers" + QDir::separator() +
+		//QString tmpString = QDir::toNativeSeparators(qtIBasePluginName_);
 		pluginLoader_.setFileName(tmpString);        
         if (!pluginLoader_.load())
         {            
