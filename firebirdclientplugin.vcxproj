@@ -147,36 +147,24 @@
     <PostBuildEvent>
       <Command>echo POSTBUILDSTEP for $(ProjectName)
 
-xcopy "$(TargetPath)" "$(BRAINSTIM_HOME)\Install\plugins\$(Platform)\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-copy "$(FIREBIRD_HOME)\fbembed.dll" "$(BRAINSTIM_HOME)\Install\fbclient.dll" /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icudt30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icuin30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\msvcp80.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\firebird.conf" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(BRAINSTIM_HOME)\Install\Plugins\$(Platform)\" /i /d /y
+xcopy "$(TargetPath)" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 
-REM xcopy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)$(OutDir)" /i /d /y
-REM if errorlevel 1 goto BuildEventFailed
-REM echo GAC of: "$(SolutionDir)$(OutDir)$(TargetFileName)"
-REM gacutil.exe /nologo /i "$(SolutionDir)$(OutDir)$(TargetFileName)" /f
-REM if errorlevel 1 goto BuildEventFailed
-REM Exit properly because the build will not fail
-REM unless the final step exits with an error code
+copy "$(FIREBIRD_HOME)\fbembed.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\fbclient.dll" /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\firebird.conf" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+
 goto BuildEventOK
 :BuildEventFailed
 echo POSTBUILDSTEP for $(ProjectName) FAILED
@@ -238,36 +226,24 @@ echo POSTBUILDSTEP for $(ProjectName) COMPLETED OK
     <PostBuildEvent>
       <Command>echo POSTBUILDSTEP for $(ProjectName)
 
-xcopy "$(TargetPath)" "$(BRAINSTIM_HOME)\Install\plugins\$(Platform)\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-copy "$(FIREBIRD_HOME)\fbembed.dll" "$(BRAINSTIM_HOME)\Install\fbclient.dll" /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icudt30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icuin30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\msvcp80.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\firebird.conf" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(BRAINSTIM_HOME)\Install\Plugins\$(Platform)\" /i /d /y
+xcopy "$(TargetPath)" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 
-REM xcopy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)$(OutDir)" /i /d /y
-REM if errorlevel 1 goto BuildEventFailed
-REM echo GAC of: "$(SolutionDir)$(OutDir)$(TargetFileName)"
-REM gacutil.exe /nologo /i "$(SolutionDir)$(OutDir)$(TargetFileName)" /f
-REM if errorlevel 1 goto BuildEventFailed
-REM Exit properly because the build will not fail
-REM unless the final step exits with an error code
+copy "$(FIREBIRD_HOME)\fbembed.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\fbclient.dll" /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\firebird.conf" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+
 goto BuildEventOK
 :BuildEventFailed
 echo POSTBUILDSTEP for $(ProjectName) FAILED
@@ -326,36 +302,24 @@ echo POSTBUILDSTEP for $(ProjectName) COMPLETED OK
     <PostBuildEvent>
       <Command>echo POSTBUILDSTEP for $(ProjectName)
 
-xcopy "$(TargetPath)" "$(BRAINSTIM_HOME)\Install\plugins\$(Platform)\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-copy "$(FIREBIRD_HOME)\fbembed.dll" "$(BRAINSTIM_HOME)\Install\fbclient.dll" /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icudt30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icuin30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\msvcp80.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\firebird.conf" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(BRAINSTIM_HOME)\Install\Plugins\$(Platform)\" /i /d /y
+xcopy "$(TargetPath)" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 
-REM xcopy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)$(OutDir)" /i /d /y
-REM if errorlevel 1 goto BuildEventFailed
-REM echo GAC of: "$(SolutionDir)$(OutDir)$(TargetFileName)"
-REM gacutil.exe /nologo /i "$(SolutionDir)$(OutDir)$(TargetFileName)" /f
-REM if errorlevel 1 goto BuildEventFailed
-REM Exit properly because the build will not fail
-REM unless the final step exits with an error code
+copy "$(FIREBIRD_HOME)\fbembed.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\fbclient.dll" /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\firebird.conf" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+
 goto BuildEventOK
 :BuildEventFailed
 echo POSTBUILDSTEP for $(ProjectName) FAILED
@@ -416,36 +380,24 @@ echo POSTBUILDSTEP for $(ProjectName) COMPLETED OK
     <PostBuildEvent>
       <Command>echo POSTBUILDSTEP for $(ProjectName)
 
-xcopy "$(TargetPath)" "$(BRAINSTIM_HOME)\Install\plugins\$(Platform)\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-copy "$(FIREBIRD_HOME)\fbembed.dll" "$(BRAINSTIM_HOME)\Install\fbclient.dll" /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icudt30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icuin30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\msvcp80.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(FIREBIRD_HOME)\firebird.conf" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(BRAINSTIM_HOME)\Install\" /i /d /y
-if errorlevel 1 goto BuildEventFailed
-xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(BRAINSTIM_HOME)\Install\Plugins\$(Platform)\" /i /d /y
+xcopy "$(TargetPath)" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 
-REM xcopy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)$(OutDir)" /i /d /y
-REM if errorlevel 1 goto BuildEventFailed
-REM echo GAC of: "$(SolutionDir)$(OutDir)$(TargetFileName)"
-REM gacutil.exe /nologo /i "$(SolutionDir)$(OutDir)$(TargetFileName)" /f
-REM if errorlevel 1 goto BuildEventFailed
-REM Exit properly because the build will not fail
-REM unless the final step exits with an error code
+copy "$(FIREBIRD_HOME)\fbembed.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\fbclient.dll" /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\firebird.conf" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+
 goto BuildEventOK
 :BuildEventFailed
 echo POSTBUILDSTEP for $(ProjectName) FAILED
