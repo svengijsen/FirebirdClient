@@ -165,6 +165,11 @@ if errorlevel 1 goto BuildEventFailed
 xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 
+SET PATH=%PATH%;$(QTDIR)\bin
+CD $(BRAINSTIM_HOME)\Install\
+$(BRAINSTIM_HOME)\Install\UpdateMngr_$(Platform)_$(Configuration) -p "$(ProjectDir)build\$(Platform)\$(Configuration)\$(ProjectName)_$(Platform)_$(Configuration).ini" install -o
+if errorlevel 1 goto BuildEventFailed
+
 goto BuildEventOK
 :BuildEventFailed
 echo POSTBUILDSTEP for $(ProjectName) FAILED
@@ -244,6 +249,11 @@ if errorlevel 1 goto BuildEventFailed
 xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 
+SET PATH=%PATH%;$(QTDIR)\bin
+CD $(BRAINSTIM_HOME)\Install\
+$(BRAINSTIM_HOME)\Install\UpdateMngr_$(Platform)_$(Configuration) -p "$(ProjectDir)build\$(Platform)\$(Configuration)\$(ProjectName)_$(Platform)_$(Configuration).ini" install -o
+if errorlevel 1 goto BuildEventFailed
+
 goto BuildEventOK
 :BuildEventFailed
 echo POSTBUILDSTEP for $(ProjectName) FAILED
@@ -318,6 +328,11 @@ if errorlevel 1 goto BuildEventFailed
 xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+
+SET PATH=%PATH%;$(QTDIR)\bin
+CD $(BRAINSTIM_HOME)\Install\
+$(BRAINSTIM_HOME)\Install\UpdateMngr_$(Platform)_$(Configuration) -p "$(ProjectDir)build\$(Platform)\$(Configuration)\$(ProjectName)_$(Platform)_$(Configuration).ini" install -o
 if errorlevel 1 goto BuildEventFailed
 
 goto BuildEventOK
@@ -396,6 +411,11 @@ if errorlevel 1 goto BuildEventFailed
 xcopy "$(QTDIR)\plugins\sqldrivers\qsqlibase$(DebugSuffix).dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(ProjectDir)resources\$(ProjectName)_$(Platform)_$(Configuration).ini" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+
+SET PATH=%PATH%;$(QTDIR)\bin
+CD $(BRAINSTIM_HOME)\Install\
+$(BRAINSTIM_HOME)\Install\UpdateMngr_$(Platform)_$(Configuration) -p "$(ProjectDir)build\$(Platform)\$(Configuration)\$(ProjectName)_$(Platform)_$(Configuration).ini" install -o
 if errorlevel 1 goto BuildEventFailed
 
 goto BuildEventOK
