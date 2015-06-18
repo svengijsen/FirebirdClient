@@ -154,6 +154,10 @@ copy "$(FIREBIRD_HOME)\fbembed.dll" "$(ProjectDir)\build\$(Platform)\$(Configura
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icudt30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icuin30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
@@ -238,6 +242,10 @@ copy "$(FIREBIRD_HOME)\fbembed.dll" "$(ProjectDir)\build\$(Platform)\$(Configura
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icudt30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icuin30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\firebird.msg" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
@@ -318,6 +326,10 @@ if errorlevel 1 goto BuildEventFailed
 copy "$(FIREBIRD_HOME)\fbembed.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\fbclient.dll" /y
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icudt30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icuin30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
@@ -401,6 +413,10 @@ if errorlevel 1 goto BuildEventFailed
 copy "$(FIREBIRD_HOME)\fbembed.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\fbclient.dll" /y
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\icuuc30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icudt30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
+if errorlevel 1 goto BuildEventFailed
+xcopy "$(FIREBIRD_HOME)\icuin30.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
 xcopy "$(FIREBIRD_HOME)\msvcr80.dll" "$(ProjectDir)\build\$(Platform)\$(Configuration)\" /i /d /y
 if errorlevel 1 goto BuildEventFailed
