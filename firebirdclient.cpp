@@ -106,6 +106,13 @@ bool FirebirdClient::CloseDatabase()
 
 bool FirebirdClient::ExportDatabasetoExcel(const QString& sPath, const QString& sQuery, const QString& sSheetName)
 {
+	QAxObject *excel = new QAxObject(this);
+	bool bControlLoaded = excel->setControl("Excel.Application");
+	if (!bControlLoaded)
+	{
+		qDebug() << __FUNCTION__ << "Error while creating excel object! No excel object can be instantiated! Please, check if you have MS Excel installed.";
+		return false;
+	}
 	QSqlQuery query;
 	if(RetrieveSQLQuery(sQuery,query))
 	{
@@ -140,8 +147,6 @@ bool FirebirdClient::ExportDatabasetoExcel(const QString& sPath, const QString& 
 		}
 		sFinalPath = sPath;
 		QStringList lExcelPIDS = getListOfPids("EXCEL.EXE");
-		
-		QAxObject* excel = new QAxObject( "Excel.Application");
 		QAxObject* workbooks = excel->querySubObject( "Workbooks" );
 		QAxObject* workbook = NULL;
 		QAxObject* sheets = NULL;
