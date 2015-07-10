@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QHelpCollectionProject version="1.0">
+    <assistant>
+	<title>FirebirdClient plugin v1.0.0.1</title>
+        <applicationIcon>FirebirdClient/images/logo.jpg</applicationIcon>
+        <cacheDirectory>SvenGijsen/BrainStim/Plugins/FirebirdClient</cacheDirectory>
+        <startPage>qthelp://com.svengijsen.brainstim/doc/plugins/FirebirdClient/index.html</startPage>
+        <aboutMenuText>
+            <text>About FirebirdClient</text>
+        </aboutMenuText>
+        <aboutDialog>
+            <file>FirebirdClient/additional/about.txt</file>
+            <icon>FirebirdClient/images/logo.jpg</icon>
+        </aboutDialog>
+        <enableDocumentationManager>false</enableDocumentationManager>
+        <enableAddressBar>false</enableAddressBar>
+        <enableFilterFunctionality>false</enableFilterFunctionality>
+    </assistant>
+    <docFiles>
+        <generate>
+            <file>
+                <input>FirebirdClient.qhp</input>
+                <output>FirebirdClient.qch</output>
+                </file>
+            </generate>
+        <register>
+            <file>FirebirdClient.qch</file>
+            </register>
+        </docFiles>
+    </QHelpCollectionProject>
