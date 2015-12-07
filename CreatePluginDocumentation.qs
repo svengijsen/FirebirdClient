@@ -147,7 +147,7 @@ ConnectDisconnectScriptFunctions(true);
 //Qt Help Collection			.qhc		The output of the help collection generator. This is the file QHelpEngine operates on. It contains references to any number of compressed help files as well as additional information, 
 //							such as custom filters.
 bDoCleanup = false;
-sBinairySteps = 8;
+sBinairySteps = 16;
 sScriptPath = ToWindowsPath(sScriptPath);//Important!
 sPluginProjectPath = ToWindowsPath(sPluginProjectPath);//Important!
 //sQtDirectory = getString("Choose the Qt directory","Qt directory:",sQtDirectory_default);
@@ -215,7 +215,79 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 		//tmpStringList[1] = sScriptPath + sPluginName + ".qhc";
 		tmpStringList[1] = sBrainStimProjectDirectory + "\\Install\\documents\\"  + sPluginName + ".qhc";
 		sBinairyPath = "assistant";		
-	}	
+	}
+	else if (nCounter==9)//Win32 - Release
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[1] = sScriptPath + "build\\Win32\\Release\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
+	else if (nCounter==10)//Win32 - Release
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
+		tmpStringList[1] = sScriptPath + "build\\Win32\\Release\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
+	else if (nCounter==11)//Win32 - Debug
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[1] = sScriptPath + "build\\Win32\\Debug\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
+	else if (nCounter==12)//Win32 - Debug
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
+		tmpStringList[1] = sScriptPath + "build\\Win32\\Debug\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
+	else if (nCounter==13)//X64 - Release
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[1] = sScriptPath + "build\\x64\\Release\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
+	else if (nCounter==14)//X64 - Release
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
+		tmpStringList[1] = sScriptPath + "build\\x64\\Release\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
+	else if (nCounter==15)//X64 - Debug
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[1] = sScriptPath + "build\\x64\\Debug\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
+	else if (nCounter==16)//X64 - Debug
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
+		tmpStringList[1] = sScriptPath + "build\\x64\\Debug\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
 	else
 	{
 		bSkipStep = true;
