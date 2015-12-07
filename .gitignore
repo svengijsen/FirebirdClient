@@ -3,3 +3,5 @@
 *.suo
 *.vcxproj.user
 /build
+*.FDB
+*.xls
