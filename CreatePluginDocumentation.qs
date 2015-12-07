@@ -13,7 +13,7 @@ var bSkipStep;
 var sScriptPath = BrainStim.getActiveDocumentFileLocation() + "/";
 var sPluginProjectPath = sScriptPath + "../";
 var sBinairyPath;
-var sBrainStimProjectDirectory = ToWindowsPath("../../../BrainStim");
+var sBrainStimProjectDirectory = ToWindowsPath("../../BrainStim");
 var sQTDirectory = ToWindowsPath("E:/Libraries/Qt5.3.2_32bit/5.3/msvc2013_opengl/");
 
 InstallProcess.setProcessChannelMode(QProcess.MergedChannels);
