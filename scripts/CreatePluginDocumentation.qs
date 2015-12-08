@@ -11,9 +11,10 @@ var bFileProccessed;
 var nCounter;
 var bSkipStep;
 var sScriptPath = BrainStim.getActiveDocumentFileLocation() + "/";
-var sPluginProjectPath = sScriptPath + "../";
+var sRootPath = sScriptPath + "../";
+var sPluginProjectPath = sScriptPath + "../../";
 var sBinairyPath;
-var sBrainStimProjectDirectory = ToWindowsPath("../../BrainStim");
+var sBrainStimProjectDirectory = ToWindowsPath("../../../BrainStim");
 var sQTDirectory = ToWindowsPath("E:/Libraries/Qt5.3.2_32bit/5.3/msvc2013_opengl/");
 
 InstallProcess.setProcessChannelMode(QProcess.MergedChannels);
@@ -149,6 +150,7 @@ ConnectDisconnectScriptFunctions(true);
 bDoCleanup = false;
 sBinairySteps = 16;
 sScriptPath = ToWindowsPath(sScriptPath);//Important!
+sRootPath = ToWindowsPath(sRootPath);//Important!
 sPluginProjectPath = ToWindowsPath(sPluginProjectPath);//Important!
 //sQtDirectory = getString("Choose the Qt directory","Qt directory:",sQtDirectory_default);
 //Log("Qt directory = " + sQtDirectory);
@@ -174,9 +176,9 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 	{
 	//	qcollectiongenerator mycollection.qhcp -o mycollection.qhc
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qhcp";
+		tmpStringList[0] = sRootPath + sPluginName + ".qhcp";
 		tmpStringList[1] = "-o"
-		tmpStringList[2] = sScriptPath + sPluginName + ".qhc";
+		tmpStringList[2] = sRootPath + sPluginName + ".qhc";
 		sBinairyPath = sQTDirectory + "bin/qcollectiongenerator";
 	}
 	else if (nCounter==4)
@@ -192,7 +194,7 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 	else if (nCounter==6)
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[0] = sRootPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
 		tmpStringList[1] = sBrainStimProjectDirectory + "\\Install\\documents\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
@@ -201,35 +203,35 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 	else if (nCounter==7)
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
+		tmpStringList[0] = sRootPath + sPluginName + ".qch";
 		tmpStringList[1] = sBrainStimProjectDirectory + "\\Install\\documents\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
 		sBinairyPath = "xcopy";
 	}
-	else if (nCounter==8)
-	{
-		//assistant -collectionFile MainDocumentation.qhc
-		tmpStringList = [];//Reset list
-		tmpStringList[0] = "-collectionFile";
-		//tmpStringList[1] = sScriptPath + sPluginName + ".qhc";
-		tmpStringList[1] = sBrainStimProjectDirectory + "\\Install\\documents\\"  + sPluginName + ".qhc";
-		sBinairyPath = "assistant";		
-	}
-	else if (nCounter==9)//Win32 - Release
+	else if (nCounter==8)//Win32 - Release
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
-		tmpStringList[1] = sScriptPath + "build\\Win32\\Release\\";
+		tmpStringList[0] = sRootPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[1] = sRootPath + "build\\Win32\\Release\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
 		sBinairyPath = "xcopy";
 	}
-	else if (nCounter==10)//Win32 - Release
+	else if (nCounter==9)//Win32 - Release
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
-		tmpStringList[1] = sScriptPath + "build\\Win32\\Release\\";
+		tmpStringList[0] = sRootPath + sPluginName + ".qch";
+		tmpStringList[1] = sRootPath + "build\\Win32\\Release\\";
+		tmpStringList[2] = "/Y";
+		tmpStringList[3] = "/F";
+		sBinairyPath = "xcopy";
+	}
+	else if (nCounter==10)//Win32 - Debug
+	{
+		tmpStringList = [];//Reset list
+		tmpStringList[0] = sRootPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[1] = sRootPath + "build\\Win32\\Debug\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
 		sBinairyPath = "xcopy";
@@ -237,17 +239,17 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 	else if (nCounter==11)//Win32 - Debug
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
-		tmpStringList[1] = sScriptPath + "build\\Win32\\Debug\\";
+		tmpStringList[0] = sRootPath + sPluginName + ".qch";
+		tmpStringList[1] = sRootPath + "build\\Win32\\Debug\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
 		sBinairyPath = "xcopy";
 	}
-	else if (nCounter==12)//Win32 - Debug
+	else if (nCounter==12)//X64 - Release
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
-		tmpStringList[1] = sScriptPath + "build\\Win32\\Debug\\";
+		tmpStringList[0] = sRootPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[1] = sRootPath + "build\\x64\\Release\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
 		sBinairyPath = "xcopy";
@@ -255,17 +257,17 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 	else if (nCounter==13)//X64 - Release
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
-		tmpStringList[1] = sScriptPath + "build\\x64\\Release\\";
+		tmpStringList[0] = sRootPath + sPluginName + ".qch";
+		tmpStringList[1] = sRootPath + "build\\x64\\Release\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
 		sBinairyPath = "xcopy";
 	}
-	else if (nCounter==14)//X64 - Release
+	else if (nCounter==14)//X64 - Debug
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
-		tmpStringList[1] = sScriptPath + "build\\x64\\Release\\";
+		tmpStringList[0] = sRootPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
+		tmpStringList[1] = sRootPath + "build\\x64\\Debug\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
 		sBinairyPath = "xcopy";
@@ -273,20 +275,20 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 	else if (nCounter==15)//X64 - Debug
 	{
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qhc";//Xcopy only works with "\" for directories!
-		tmpStringList[1] = sScriptPath + "build\\x64\\Debug\\";
+		tmpStringList[0] = sRootPath + sPluginName + ".qch";
+		tmpStringList[1] = sRootPath + "build\\x64\\Debug\\";
 		tmpStringList[2] = "/Y";
 		tmpStringList[3] = "/F";
 		sBinairyPath = "xcopy";
 	}
-	else if (nCounter==16)//X64 - Debug
+	else if (nCounter==16)
 	{
+		//assistant -collectionFile MainDocumentation.qhc
 		tmpStringList = [];//Reset list
-		tmpStringList[0] = sScriptPath + sPluginName + ".qch";
-		tmpStringList[1] = sScriptPath + "build\\x64\\Debug\\";
-		tmpStringList[2] = "/Y";
-		tmpStringList[3] = "/F";
-		sBinairyPath = "xcopy";
+		tmpStringList[0] = "-collectionFile";
+		//tmpStringList[1] = sRootPath + sPluginName + ".qhc";
+		tmpStringList[1] = sBrainStimProjectDirectory + "\\Install\\documents\\"  + sPluginName + ".qhc";
+		sBinairyPath = "assistant";		
 	}
 	else
 	{
@@ -321,8 +323,8 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 		continue;
 	}
 }
-
 //@echo off
 //CALL .\bin\assistant.exe -collectionFile .\documents\MainDocumentation.qhc -enableRemoteControl
+
 
 
