@@ -49,7 +49,7 @@ public slots:
 	
 	//! \brief CreateDatabase slot.
 	/*!  This function creates a new Firebird database and automatically initializes it.
-	 * @param filePath the directory path to the new database file (<Path>/<DBName>.FDB).
+	 * @param filePath the directory path to the new database file (\<Path\>/\<DBName\>.FDB).
 	 * @param userName the username of the database creator that gets the administrator rights.
 	 * @param password the password for the above administrator user.
 	 * @return a boolean value determining whether the database could be created.
@@ -57,7 +57,7 @@ public slots:
 	bool CreateDatabase(const QString& filePath, const QString& userName, const QString& password);     
 	//! \brief OpenDatabase slot.
 	/*!  This function opens an existing Firebird database and automatically initializes it.
-	 * @param filePath the directory path to the database file (<Path>/<DBName>.FDB) to open.
+	 * @param filePath the directory path to the database file (\<Path\>/\<DBName\>.FDB) to open.
 	 * @param userName a username of the database with sufficient rights to open the Firebird database.
 	 * @param password the password for the above user.
 	 * @return a boolean value determining whether the database could be opened.
@@ -84,7 +84,7 @@ public slots:
 	QStringList ExecuteReturnDatabaseQuery(const QString &sQuery, const QString sColumnName);
 	//! \brief ExportDatabasetoExcel slot.
 	/*!  This function exports the result (table) of an SQL Select Query to an Sheet of an Excel document.
-	 * @param sPath the directory path to the (new or existing) Excel file (<Path>/<ExcelName>.XLS)..
+	 * @param sPath the directory path to the (new or existing) Excel file (\<Path\>/\<ExcelName\>.XLS)..
 	 * @param sQuery the SQL Select Query to execute.
 	 * @param sSheetName the name of the Excel documents sheet to export the result to.
 	 * @return a boolean value determining whether the SQL Select Query could be exported to an Sheet of an Excel document.
