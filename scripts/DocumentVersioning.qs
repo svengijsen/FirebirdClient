@@ -78,10 +78,10 @@ sDestList.push(sSourceList[sSourceList.length-1]);
 sSourceList.push(docVer_sSourcePath + "../index.html");
 sDestList.push(sSourceList[sSourceList.length-1]);
 	changeSet[sSourceList.length-1] = CreateArray(3,0);
-	changeSet[sSourceList.length-1][0][0] = "<!--doc-version-releaseslink-FB-begin-->";
+	changeSet[sSourceList.length-1][0][0] = "<!--doc-version-repolink-FB-begin-->";
 	changeSet[sSourceList.length-1][1][0] = docVer_sHTMLComment + "\n" + 
 		"\t\t<a href=\"http://github.com/" + _sGitHubAccount + "/" + _sPluginName + "/\" target=\"_blank\">";
-	changeSet[sSourceList.length-1][2][0] = "<!--doc-version-releaseslink-FB-end-->";	
+	changeSet[sSourceList.length-1][2][0] = "<!--doc-version-repolink-FB-end-->";	
 
 sSourceList.push(docVer_sSourcePath + "index.html");
 sDestList.push(sSourceList[sSourceList.length-1]);

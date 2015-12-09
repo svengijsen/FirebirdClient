@@ -33,7 +33,7 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 	changeSet = BrainStim_CreateArray(8,2);
 	if(nCounter==1)
 	{
-		ComponentName = "FireBirdClientPlugin";		
+		ComponentName = "FirebirdClientPlugin";		
 		Log("Component Name: " + ComponentName);
 		LastComponentVersion  = "1.0.0.1";
 		Log("Last Component Version: " + LastComponentVersion);
@@ -48,7 +48,7 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 		changeSet[3][0] = preFix + "PROJECT_LOGO" + postFix;
 		changeSet[3][1] = "";//No quotes for empty!
 		changeSet[4][0] = preFix + "OUTPUT_DIRECTORY" + postFix;
-		changeSet[4][1] = "\"../FireBirdClient\"";//"\"../References/Script/FireBirdClientPlugin\"";
+		changeSet[4][1] = "\"../FirebirdClient\"";//"\"../References/Script/FirebirdClientPlugin\"";
 		changeSet[5][0] = preFix + "INPUT" + postFix;
 		changeSet[5][1] = "../../FirebirdClient/FirebirdClient.h \\\n" +
 					  "../../FirebirdClient/FirebirdClient.cpp \\\n";

@@ -1,4 +1,4 @@
-var sPluginName = "FireBirdClient";
+var sPluginName = "FirebirdClient";
 var tmpString;
 var InstallProcess = new QProcess();
 var tmpByteArray = new QByteArray();

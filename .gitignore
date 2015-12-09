@@ -1,3 +1,4 @@
 
 *.qhc
 *.qch
+scripts/*.cfg
