@@ -40,11 +40,11 @@ for(nCounter=1;nCounter<=sBinairySteps;nCounter++)
 		Log("\n");
 		fileDest = ComponentName + ".cfg";
 		changeSet[0][0] = preFix + "PROJECT_NAME" + postFix;
-		changeSet[0][1] = "\"FireBird Client Device script class\"";
+		changeSet[0][1] = "\"FirebirdClient plugin script class\"";
 		changeSet[1][0] = preFix + "PROJECT_NUMBER" + postFix;
 		changeSet[1][1] = "\"" + LastComponentVersion + "\"";
 		changeSet[2][0] = preFix + "PROJECT_BRIEF" + postFix;
-		changeSet[2][1] = "\"FireBird Client Device script class reference.\"";
+		changeSet[2][1] = "\"FirebirdClient plugin script class reference.\"";
 		changeSet[3][0] = preFix + "PROJECT_LOGO" + postFix;
 		changeSet[3][1] = "";//No quotes for empty!
 		changeSet[4][0] = preFix + "OUTPUT_DIRECTORY" + postFix;
