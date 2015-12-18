@@ -51,7 +51,7 @@ int FirebirdClientPlugin::ConfigureScriptEngine(QScriptEngine &engine)
 {
 	QScriptValue FirebirdClientProto = engine.newQObject(FirebirdClientObject);
 	engine.setDefaultPrototype(qMetaTypeId<FirebirdClient*>(), FirebirdClientProto);
-	QScriptValue FirebirdClientCtor = engine.newFunction(FirebirdClient::ctor__extensionname, FirebirdClientProto);
+	QScriptValue FirebirdClientCtor = engine.newFunction(FirebirdClient::ctor_FirebirdClient, FirebirdClientProto);
 	engine.globalObject().setProperty(PLUGIN_SCRIPTOBJECT_NAME, FirebirdClientCtor);
 	int nMetaType = qRegisterMetaType<FirebirdClient>(PLUGIN_SCRIPTOBJECT_CLASS);
 	//FinalizeScriptObjectScriptContext(engine, FirebirdClientObject);

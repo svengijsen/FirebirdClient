@@ -24,7 +24,7 @@
 #include "windows.h"
 #include "Psapi.h"
 
-QScriptValue FirebirdClient::ctor__extensionname(QScriptContext* context, QScriptEngine* engine)
+QScriptValue FirebirdClient::ctor_FirebirdClient(QScriptContext* context, QScriptEngine* engine)
 {
 	Q_UNUSED(context);
 	//this function gets called first whenever a new object is constructed trough the script

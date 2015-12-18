@@ -50,6 +50,7 @@ private:
 	FirebirdClient_Dialog *FirebirdClientDiagObject;
 
 public slots:
+	bool HasGUI() { return false; };
     bool ShowGUI();
 	bool IsCompatible() {return PluginInterface::IsCompatible();};// ExtensionInterface PluginInterface::IsCompatible();};
 	//QStringList GetAdditionalFileExtensions() {return (QStringList() << "FirebirdClient files (*.FirebirdClient);;");};

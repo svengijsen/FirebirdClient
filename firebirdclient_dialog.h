@@ -16,11 +16,8 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-
-//This file implements the UI functionality
-
-#ifndef FirebirdClient_DIALOG_H
-#define FirebirdClient_DIALOG_H
+#ifndef FIREBIRDCLIENT_DIALOG_H
+#define FIREBIRDCLIENT_DIALOG_H
 
 #include <QDialog>
 #include "ui_FirebirdClient_dialog.h"
@@ -46,4 +43,4 @@ private slots:
 	void on_okButton_clicked();
 };
 
-#endif // FirebirdClient_DIALOG_H
+#endif // FIREBIRDCLIENT_DIALOG_H

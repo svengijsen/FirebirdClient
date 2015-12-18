@@ -1,7 +1,16 @@
 ----------------------------------
 FirebirdClient, a BrainStim plugin
 ----------------------------------
-		
+
+The BrainStim Project page is located at:
+<http://github.com/svengijsen/BrainStim>
+
+This plugins documentation is located at:
+<http://svengijsen.github.io/FirebirdClient/>
+
+and can be downloaded from:
+<http://github.com/svengijsen/FirebirdClient/releases>
+
 This plugin is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or

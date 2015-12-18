@@ -16,11 +16,9 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+#ifndef FIREBIRDCLIENT_H
+#define FIREBIRDCLIENT_H
 
-//This file defines the script binding interface, all below function are scriptable except for the destructor
-
-#ifndef FirebirdClient_H
-#define FirebirdClient_H
 #include <QObject>
 #include <QString>
 #include <QtScript>
@@ -42,7 +40,7 @@ public:
 	~FirebirdClient();
 	FirebirdClient(const FirebirdClient& other ){Q_UNUSED(other);}//TODO fill in copy constructor, should be used for the Q_DECLARE_METATYPE macro
 
-	static QScriptValue ctor__extensionname(QScriptContext* context, QScriptEngine* engine);
+	static QScriptValue ctor_FirebirdClient(QScriptContext* context, QScriptEngine* engine);
 
 public slots:
 	bool makeThisAvailableInScript(QString strObjectScriptName = "", QObject *engine = NULL);//To make the objects (e.g. defined in a *.exml file) available in the script
@@ -105,4 +103,4 @@ private:
 	Model::FireBirdDatabase *fbDatabase;
 };
 
-#endif // FirebirdClient_H
+#endif // FIREBIRDCLIENT_H
