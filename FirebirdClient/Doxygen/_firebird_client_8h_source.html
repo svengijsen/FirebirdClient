@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>FireBird Client Device script class: FirebirdClient.h Source File</title>
+<title>FirebirdClient plugin script class: FirebirdClient.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -17,10 +17,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">FireBird Client Device script class
-   &#160;<span id="projectnumber">1.0.0.1</span>
+   <div id="projectname">FirebirdClient plugin script class
+   &#160;<span id="projectnumber">1.1.0.1</span>
    </div>
-   <div id="projectbrief">FireBird Client Device script class reference.</div>
+   <div id="projectbrief">FirebirdClient plugin script class reference.</div>
   </td>
  </tr>
  </tbody>
@@ -56,71 +56,69 @@
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//This file defines the script binding interface, all below function are scriptable except for the destructor</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifndef FIREBIRDCLIENT_H</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define FIREBIRDCLIENT_H</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifndef FirebirdClient_H</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define FirebirdClient_H</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;QtScript&gt;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;QScriptable&gt;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;QTableView&gt;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;DatabaseModel.h&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;QtScript&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;QScriptable&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;QTableView&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;DatabaseModel.h&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="index.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="index.html">FirebirdClient</a> : <span class="keyword">public</span> QObject, <span class="keyword">protected</span> QScriptable</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        Q_OBJECT</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment">//Q_CLASSINFO(&quot;ScriptAPIClassName&quot;, &quot;FirebirdClient&quot;);//Can&#39;t use defines here!, moc doesn&#39;t handle defines, not needed here</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="index.html">FirebirdClient</a>(QObject *parent = 0);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        ~<a class="code" href="index.html">FirebirdClient</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="index.html">FirebirdClient</a>(<span class="keyword">const</span> <a class="code" href="index.html">FirebirdClient</a>&amp; other ){Q_UNUSED(other);}<span class="comment">//TODO fill in copy constructor, should be used for the Q_DECLARE_METATYPE macro</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_firebird_client.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_firebird_client.html">FirebirdClient</a> : <span class="keyword">public</span> QObject, <span class="keyword">protected</span> QScriptable</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        Q_OBJECT</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="comment">//Q_CLASSINFO(&quot;ScriptAPIClassName&quot;, &quot;FirebirdClient&quot;);//Can&#39;t use defines here!, moc doesn&#39;t handle defines, not needed here</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="class_firebird_client.html">FirebirdClient</a>(QObject *parent = 0);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        ~<a class="code" href="class_firebird_client.html">FirebirdClient</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="class_firebird_client.html">FirebirdClient</a>(<span class="keyword">const</span> <a class="code" href="class_firebird_client.html">FirebirdClient</a>&amp; other ){Q_UNUSED(other);}<span class="comment">//TODO fill in copy constructor, should be used for the Q_DECLARE_METATYPE macro</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">static</span> QScriptValue ctor__extensionname(QScriptContext* context, QScriptEngine* engine);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">static</span> QScriptValue ctor__extensionname(QScriptContext* context, QScriptEngine* engine);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">bool</span> makeThisAvailableInScript(QString strObjectScriptName = <span class="stringliteral">&quot;&quot;</span>, QObject *engine = NULL);<span class="comment">//To make the objects (e.g. defined in a *.exml file) available in the script</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="index.html#aa835fa07dc4fe2893f7eaf12f8c1499d">CreateDatabase</a>(<span class="keyword">const</span> QString&amp; filePath, <span class="keyword">const</span> QString&amp; userName, <span class="keyword">const</span> QString&amp; password);     </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="index.html#ac13dfa85209c73fe658bd2c944b2e98a">OpenDatabase</a>(<span class="keyword">const</span> QString&amp; filePath, <span class="keyword">const</span> QString&amp; userName, <span class="keyword">const</span> QString&amp; password);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="index.html#ad1b20260b0e8f68bb7ba9f1a6a6d5db7">InitializeDatabase</a>();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="index.html#a1cd2dd5bbc445ac7b34daff787ba7df0">ExecuteDatabaseQuery</a>(<span class="keyword">const</span> QString&amp; sQuery);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        QStringList <a class="code" href="index.html#a43afe28cce5ac52029ffc59692fce1bb">ExecuteReturnDatabaseQuery</a>(<span class="keyword">const</span> QString &amp;sQuery, <span class="keyword">const</span> QString sColumnName);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="index.html#a6c282e67b3ceacf1e85c461156c08a51">ExportDatabasetoExcel</a>(<span class="keyword">const</span> QString&amp; sPath, <span class="keyword">const</span> QString&amp; sQuery, <span class="keyword">const</span> QString&amp; sSheetName = <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="index.html#a0064a678f31ad517ca8184d47e30fe75">CloseDatabase</a>();</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">bool</span> RetrieveSQLQuery(<span class="keyword">const</span> QString &amp;sQuery, QSqlQuery &amp;query);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        QStringList getListOfPids(<span class="keyword">const</span> QString &amp;SProcessName = <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">const</span> QStringList &amp;lExcludeList = QStringList());</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordtype">bool</span> KillPids(<span class="keyword">const</span> QStringList &amp;lPidList);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        QScriptEngine* currentScriptEngine;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        Model::FireBirdDatabase *fbDatabase;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;};</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#endif // FirebirdClient_H</span></div>
-<div class="ttc" id="class_firebird_client_html"><div class="ttname"><a href="index.html">FirebirdClient</a></div><div class="ttdoc">The FirebirdClient class. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.h:35</div></div>
-<div class="ttc" id="class_firebird_client_html_aa835fa07dc4fe2893f7eaf12f8c1499d"><div class="ttname"><a href="index.html#aa835fa07dc4fe2893f7eaf12f8c1499d">FirebirdClient::CreateDatabase</a></div><div class="ttdeci">bool CreateDatabase(const QString &amp;filePath, const QString &amp;userName, const QString &amp;password)</div><div class="ttdoc">CreateDatabase slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:80</div></div>
-<div class="ttc" id="class_firebird_client_html_a1cd2dd5bbc445ac7b34daff787ba7df0"><div class="ttname"><a href="index.html#a1cd2dd5bbc445ac7b34daff787ba7df0">FirebirdClient::ExecuteDatabaseQuery</a></div><div class="ttdeci">bool ExecuteDatabaseQuery(const QString &amp;sQuery)</div><div class="ttdoc">ExecuteDatabaseQuery slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:461</div></div>
-<div class="ttc" id="class_firebird_client_html_ac13dfa85209c73fe658bd2c944b2e98a"><div class="ttname"><a href="index.html#ac13dfa85209c73fe658bd2c944b2e98a">FirebirdClient::OpenDatabase</a></div><div class="ttdeci">bool OpenDatabase(const QString &amp;filePath, const QString &amp;userName, const QString &amp;password)</div><div class="ttdoc">OpenDatabase slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:89</div></div>
-<div class="ttc" id="class_firebird_client_html_a43afe28cce5ac52029ffc59692fce1bb"><div class="ttname"><a href="index.html#a43afe28cce5ac52029ffc59692fce1bb">FirebirdClient::ExecuteReturnDatabaseQuery</a></div><div class="ttdeci">QStringList ExecuteReturnDatabaseQuery(const QString &amp;sQuery, const QString sColumnName)</div><div class="ttdoc">ExecuteReturnDatabaseQuery slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:485</div></div>
-<div class="ttc" id="class_firebird_client_html_a6c282e67b3ceacf1e85c461156c08a51"><div class="ttname"><a href="index.html#a6c282e67b3ceacf1e85c461156c08a51">FirebirdClient::ExportDatabasetoExcel</a></div><div class="ttdeci">bool ExportDatabasetoExcel(const QString &amp;sPath, const QString &amp;sQuery, const QString &amp;sSheetName=&quot;&quot;)</div><div class="ttdoc">ExportDatabasetoExcel slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:107</div></div>
-<div class="ttc" id="class_firebird_client_html_ad1b20260b0e8f68bb7ba9f1a6a6d5db7"><div class="ttname"><a href="index.html#ad1b20260b0e8f68bb7ba9f1a6a6d5db7">FirebirdClient::InitializeDatabase</a></div><div class="ttdeci">bool InitializeDatabase()</div><div class="ttdoc">InitializeDatabase slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:73</div></div>
-<div class="ttc" id="class_firebird_client_html_a0064a678f31ad517ca8184d47e30fe75"><div class="ttname"><a href="index.html#a0064a678f31ad517ca8184d47e30fe75">FirebirdClient::CloseDatabase</a></div><div class="ttdeci">bool CloseDatabase()</div><div class="ttdoc">CloseDatabase slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:98</div></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">bool</span> makeThisAvailableInScript(QString strObjectScriptName = <span class="stringliteral">&quot;&quot;</span>, QObject *engine = NULL);<span class="comment">//To make the objects (e.g. defined in a *.exml file) available in the script</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_firebird_client.html#aa835fa07dc4fe2893f7eaf12f8c1499d">CreateDatabase</a>(<span class="keyword">const</span> QString&amp; filePath, <span class="keyword">const</span> QString&amp; userName, <span class="keyword">const</span> QString&amp; password);     </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_firebird_client.html#ac13dfa85209c73fe658bd2c944b2e98a">OpenDatabase</a>(<span class="keyword">const</span> QString&amp; filePath, <span class="keyword">const</span> QString&amp; userName, <span class="keyword">const</span> QString&amp; password);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_firebird_client.html#ad1b20260b0e8f68bb7ba9f1a6a6d5db7">InitializeDatabase</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_firebird_client.html#a1cd2dd5bbc445ac7b34daff787ba7df0">ExecuteDatabaseQuery</a>(<span class="keyword">const</span> QString&amp; sQuery);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        QStringList <a class="code" href="class_firebird_client.html#a43afe28cce5ac52029ffc59692fce1bb">ExecuteReturnDatabaseQuery</a>(<span class="keyword">const</span> QString &amp;sQuery, <span class="keyword">const</span> QString sColumnName);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_firebird_client.html#a6c282e67b3ceacf1e85c461156c08a51">ExportDatabasetoExcel</a>(<span class="keyword">const</span> QString&amp; sPath, <span class="keyword">const</span> QString&amp; sQuery, <span class="keyword">const</span> QString&amp; sSheetName = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_firebird_client.html#a0064a678f31ad517ca8184d47e30fe75">CloseDatabase</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordtype">bool</span> RetrieveSQLQuery(<span class="keyword">const</span> QString &amp;sQuery, QSqlQuery &amp;query);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        QStringList getListOfPids(<span class="keyword">const</span> QString &amp;SProcessName = <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">const</span> QStringList &amp;lExcludeList = QStringList());</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">bool</span> KillPids(<span class="keyword">const</span> QStringList &amp;lPidList);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        QScriptEngine* currentScriptEngine;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        Model::FireBirdDatabase *fbDatabase;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // FIREBIRDCLIENT_H</span></div>
+<div class="ttc" id="class_firebird_client_html"><div class="ttname"><a href="class_firebird_client.html">FirebirdClient</a></div><div class="ttdoc">The FirebirdClient class. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.h:33</div></div>
+<div class="ttc" id="class_firebird_client_html_aa835fa07dc4fe2893f7eaf12f8c1499d"><div class="ttname"><a href="class_firebird_client.html#aa835fa07dc4fe2893f7eaf12f8c1499d">FirebirdClient::CreateDatabase</a></div><div class="ttdeci">bool CreateDatabase(const QString &amp;filePath, const QString &amp;userName, const QString &amp;password)</div><div class="ttdoc">CreateDatabase slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:80</div></div>
+<div class="ttc" id="class_firebird_client_html_a1cd2dd5bbc445ac7b34daff787ba7df0"><div class="ttname"><a href="class_firebird_client.html#a1cd2dd5bbc445ac7b34daff787ba7df0">FirebirdClient::ExecuteDatabaseQuery</a></div><div class="ttdeci">bool ExecuteDatabaseQuery(const QString &amp;sQuery)</div><div class="ttdoc">ExecuteDatabaseQuery slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:461</div></div>
+<div class="ttc" id="class_firebird_client_html_ac13dfa85209c73fe658bd2c944b2e98a"><div class="ttname"><a href="class_firebird_client.html#ac13dfa85209c73fe658bd2c944b2e98a">FirebirdClient::OpenDatabase</a></div><div class="ttdeci">bool OpenDatabase(const QString &amp;filePath, const QString &amp;userName, const QString &amp;password)</div><div class="ttdoc">OpenDatabase slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:89</div></div>
+<div class="ttc" id="class_firebird_client_html_a43afe28cce5ac52029ffc59692fce1bb"><div class="ttname"><a href="class_firebird_client.html#a43afe28cce5ac52029ffc59692fce1bb">FirebirdClient::ExecuteReturnDatabaseQuery</a></div><div class="ttdeci">QStringList ExecuteReturnDatabaseQuery(const QString &amp;sQuery, const QString sColumnName)</div><div class="ttdoc">ExecuteReturnDatabaseQuery slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:485</div></div>
+<div class="ttc" id="class_firebird_client_html_a6c282e67b3ceacf1e85c461156c08a51"><div class="ttname"><a href="class_firebird_client.html#a6c282e67b3ceacf1e85c461156c08a51">FirebirdClient::ExportDatabasetoExcel</a></div><div class="ttdeci">bool ExportDatabasetoExcel(const QString &amp;sPath, const QString &amp;sQuery, const QString &amp;sSheetName=&quot;&quot;)</div><div class="ttdoc">ExportDatabasetoExcel slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:107</div></div>
+<div class="ttc" id="class_firebird_client_html_ad1b20260b0e8f68bb7ba9f1a6a6d5db7"><div class="ttname"><a href="class_firebird_client.html#ad1b20260b0e8f68bb7ba9f1a6a6d5db7">FirebirdClient::InitializeDatabase</a></div><div class="ttdeci">bool InitializeDatabase()</div><div class="ttdoc">InitializeDatabase slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:73</div></div>
+<div class="ttc" id="class_firebird_client_html_a0064a678f31ad517ca8184d47e30fe75"><div class="ttname"><a href="class_firebird_client.html#a0064a678f31ad517ca8184d47e30fe75">FirebirdClient::CloseDatabase</a></div><div class="ttdeci">bool CloseDatabase()</div><div class="ttdoc">CloseDatabase slot. </div><div class="ttdef"><b>Definition:</b> FirebirdClient.cpp:98</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 9 2015 10:10:22 for FireBird Client Device script class by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 16 2015 14:44:52 for FirebirdClient plugin script class by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>
